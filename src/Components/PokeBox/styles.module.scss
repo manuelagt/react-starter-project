@@ -1,0 +1,17 @@
+.box{
+  display: flex;
+  align-items: center;
+  border: darkgrey 1px solid;
+  width: fit-content;
+
+  .image{
+    height: 30px;
+    width: 30px;
+    margin-right: 20px;
+    margin-left: 10px;
+  }
+
+  .name{
+    margin-right: 10px;
+  }
+}
