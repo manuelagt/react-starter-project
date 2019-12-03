@@ -25,21 +25,12 @@
 
 
     .pantalla{
-
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      grid-column-gap: 10px;
-      grid-row-gap: 15px;
       background-color: white;
       border-radius: 20px;
       border: 40px solid #a9a9a9;
       padding: 20px;
+      height: 600px;
 
-      .box{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
 
     }
 
@@ -85,7 +76,7 @@
           }
         }
 
-        .pantallaID{
+        .pantallaOff{
           margin-top: 40px;
           width: 210px;
           height: 120px;
@@ -93,6 +84,23 @@
           border-radius: 20px;
           border: 20px solid #005752;
         }
+
+        .pantallaOn{
+          margin-top: 40px;
+          width: 210px;
+          height: 120px;
+          background-color: white;
+          border-radius: 20px;
+          border: 20px solid #005752;
+          display: flex;
+          justify-content: center;
+          align-content: center;
+
+          .text{
+            font-size: 40px;
+          }
+        }
+
       }
 
 

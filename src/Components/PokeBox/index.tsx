@@ -1,20 +1,20 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import Pokeball from './pokeball.png';
-import {Link} from "react-router-dom";
 
 
 interface Props{
     name: string,
     url?: string,
+    onClick: Function,
 }
 
-export function PokeBox({ name, url }: Props) {
+export function PokeBox({ name, url, onClick}: Props) {
 
     return (
-        <Link to={`/pokedex/${name}`} className={styles.box}>
+        <button className={styles.box} onClick={() => onClick()}>
             <img src={Pokeball} alt="Pokeball" className={styles.image}/>
             <h2 className={styles.name}>{name}</h2>
-        </Link>
+        </button>
     );
 }

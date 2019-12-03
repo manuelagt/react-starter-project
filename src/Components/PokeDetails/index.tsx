@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router'
 import styles from './styles.module.scss';
-import {Link} from "react-router-dom";
-import {ReactComponent as Cross} from "../Pokedex/plus-solid.svg";
-import {ReactComponent as Back} from "./arrow-left-solid.svg";
 
-export function PokeDetails() {
-    const { name } = useParams();
+interface Props{
+    name: string,
+    handleLoad: Function,
+}
+
+export function PokeDetails({name, handleLoad}: Props) {
     const [pokemonInfo, setPokemonInfo] = useState();
 
     useEffect(() => {
@@ -15,23 +15,17 @@ export function PokeDetails() {
             .then(pokemon => {
                 console.log(pokemon);
                 setPokemonInfo(pokemon);
+                handleLoad(pokemon.id);
+
             });
-    }, [name]);
+    }, [name, handleLoad]);
 
     if (!pokemonInfo) {
         return null
     }
 
     return (
-        <div className={styles.pokedex}>
-            <div className={styles.cabecera}>
-                <div className={styles.camara}></div>
-            </div>
-            <div className={styles.carcasa}>
                 <div className={styles.pantalla}>
-                    <Link to="/pokedex">
-                        <Back className={styles.back}/>
-                    </Link>
                     <div className={styles.pokemon}>
                         <img className={styles.imagen} alt={pokemonInfo.name} src={pokemonInfo.sprites.front_default}/>
                         <h1 className={styles.title}>{pokemonInfo.name}</h1>
@@ -53,25 +47,10 @@ export function PokeDetails() {
                         <div className={styles.stats}>
                             <h2>Base Stats:</h2>
                             {pokemonInfo.stats.map((stat: any) =>
-                                <p className={styles.textoPantalla} key={stat.name}>{stat.stat.name}: {stat.base_stat}</p>
+                                <p key={stat.stat.name} className={styles.textoPantalla}>{stat.stat.name}: {stat.base_stat}</p>
                             )}
                         </div>
                     </div>
                 </div>
-                <div className={styles.controller}>
-                    <div className={styles.botonCircular}></div>
-                    <div className={styles.barrasConPantalla}>
-                        <div className={styles.barras}>
-                            <div className={styles.barraVerde}></div>
-                            <div className={styles.barraNaranja}></div>
-                        </div>
-                        <div className={styles.pantallaID}>
-                            <p className={styles.id}>{pokemonInfo.id}</p>
-                        </div>
-                    </div>
-                    <Cross className={ styles.cross }/>
-                </div>
-            </div>
-        </div>
     );
 }
