@@ -1,17 +1,23 @@
 .box{
   display: flex;
   align-items: center;
-  border: darkgrey 1px solid;
+
   width: fit-content;
+  margin: 20px;
+  background-color: lightblue;
+  border-radius: 20px;
+  text-decoration: none;
 
   .image{
     height: 30px;
     width: 30px;
     margin-right: 20px;
-    margin-left: 10px;
+    margin-left: 15px;
   }
 
   .name{
-    margin-right: 10px;
+    margin-right: 20px;
+    color: dimgray;
+    text-transform: capitalize;
   }
 }
