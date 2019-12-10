@@ -38,7 +38,7 @@ const SelectedPokemonContext = createContext<SelectedPokemonContext>({
 
 export const useSelectedPokemon = () => {
     return useContext(SelectedPokemonContext);
-}
+};
 
 interface SelectedPokemonProvider {
     children: React.ReactNode;
@@ -60,15 +60,18 @@ export const SelectedPokemonProvider = ({children}: SelectedPokemonProvider) => 
         setPokemon(undefined)
     }, [setPokemon]) ;
 
+
     const state = {
         pokemon: pokemon,
         fetchPokemon,
         clearSelectedPokemon,
 
-    }
+    };
+
+
 
     return(<SelectedPokemonContext.Provider value={state}>{children}</SelectedPokemonContext.Provider> )
-}
+};
 
 
 

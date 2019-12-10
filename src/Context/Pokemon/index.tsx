@@ -20,12 +20,12 @@ const PokemonContext = createContext<PokemonContext>({
     count: 0, //Aqui que pongo??
     handlePrevious: () =>  null,
     handleNext: () => null,
-    fetchPokemons: (offset:number) => Promise.resolve(),
+    fetchPokemons: () => Promise.resolve(),
     });
 
 export const usePokemon = () => {
     return useContext(PokemonContext);
-}
+};
 
 interface PokemonProvider {
     children: React.ReactNode
@@ -34,7 +34,7 @@ interface PokemonProvider {
 export const PokemonProvider = ( {children}: PokemonProvider) => {
     const [pokemons, setPokemons] = useState<Pokemon[]>([]);
     const [offset, setOffset] = useState(0);
-    const [count, setCount] = useState()
+    const [count, setCount] = useState();
 
     const fetchPokemons = useCallback((offset: number) => {
         return fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`)
@@ -46,7 +46,6 @@ export const PokemonProvider = ( {children}: PokemonProvider) => {
             });
     }, []);
 
-    //const setNewOffset = useCallback( (offset: number) => {setOffset(offset)}, [setOffset])
 
     const handlePrevious = useCallback( () => {
         if(offset === 0){
@@ -54,7 +53,7 @@ export const PokemonProvider = ( {children}: PokemonProvider) => {
         }else{
             setOffset(offset - 20);
         }
-    }, [offset])//En el deps tengo que meter algo??
+    }, [offset]);//En el deps tengo que meter algo??
 
     const handleNext = useCallback(() => {
         if(offset === 960){
@@ -62,7 +61,7 @@ export const PokemonProvider = ( {children}: PokemonProvider) => {
         }else{
             setOffset(offset + 20);
         }
-    }, [offset])
+    }, [offset]);
 
     const state = {
         pokemons: pokemons,
@@ -71,9 +70,9 @@ export const PokemonProvider = ( {children}: PokemonProvider) => {
         handleNext,
         handlePrevious,
         fetchPokemons,
-    }
+    };
 
 
     return(<PokemonContext.Provider value={state}>{children}</PokemonContext.Provider> )
 
-}
+};
