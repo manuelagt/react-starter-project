@@ -43,10 +43,21 @@ export const PokemonProvider = ( {children}: PokemonProvider) => {
                 console.log(pokemons);
                 setPokemons(pokemons.results);
                 setCount(pokemons.count);
+                setTitle();
             });
     }, []);
 
-    //const setNewOffset = useCallback( (offset: number) => {setOffset(offset)}, [setOffset])
+
+    const setTitle = useCallback( () => {
+        const el: HTMLElement | null = document.getElementById("title");
+        if(el){
+            const definitelyAnElement: HTMLElement = el;
+            definitelyAnElement.innerText = "Pokedex";
+        }
+
+        return null;
+
+    }, [])
 
     const handlePrevious = useCallback( () => {
         if(offset === 0){
