@@ -1,18 +1,28 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import { ReactComponent as Cross } from './plus-solid.svg';
+import { useHistory} from "react-router-dom";
+import { useSelectedPokemon } from "../../Context/SelectedPokemon";
 
 
 interface Props {
-    children: any,
-    id: string,
-    chosen: string,
-    onButtonClick: Function,
-    
-    
+    children: React.ReactNode,
+    id?: number,
+    chosen?: string,
+    handlePrevious?: () => void,
+    handleNext?: () => void,
 }
 
-export function Case({  children, id, chosen, onButtonClick, }: Props) {
+export function Case({  children, id, chosen, handleNext, handlePrevious}: Props) {
+    const { clearSelectedPokemon } = useSelectedPokemon();
+    const history = useHistory();
+
+    function handleClick() {
+        clearSelectedPokemon();
+        history.push("/pokedex");
+    }
+
+
 
     return (
         <div className={styles.pokedex}>
@@ -24,11 +34,18 @@ export function Case({  children, id, chosen, onButtonClick, }: Props) {
                     {children}
                 </div>
                 <div className={styles.controller}>
-                    <div className={styles.botonCircular} onClick={() => onButtonClick()}></div>
+                    <button  onClick={handleClick} className={styles.botonCircular}>
+                    </button>
                     <div className={styles.barrasConPantalla}>
                         <div className={styles.barras}>
-                            <div className={styles.barraVerde}></div>
-                            <div className={styles.barraNaranja}></div>
+                            {handlePrevious ?
+                                <div className={styles.barraVerde} onClick={handlePrevious}></div>:
+                                <div className={styles.barraVerde}></div>
+                            }
+                            {handlePrevious ?
+                                <div className={styles.barraNaranja} onClick={handleNext}></div>:
+                                <div className={styles.barraNaranja}></div>
+                            }
                         </div>
                         {chosen !== ""? <div className={styles.pantallaOn}>
                             <p className={styles.text}>{id}</p>

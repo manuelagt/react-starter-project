@@ -1,34 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import styles from './styles.module.scss';
 import { PokeBox } from '../PokeBox';
+import {usePokemon} from "../../Context/Pokemon";
 
-interface Props {
-    handleClick: Function,
-}
-
-export function Pokemons({handleClick}: Props) {
-
-    const [pokemons, setPokemons] = useState();
-
+export function Pokemons() {
+    const { pokemons, offset, fetchPokemons} = usePokemon()
 
     useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon`)
-            .then(res => res.json())
-            .then(pokemons => {
-                console.log(pokemons);
-                setPokemons(pokemons);
-            });
-    }, []);
-
-    if (!pokemons) {
-        return null
-    }
+            fetchPokemons(offset);
+    }, [offset, fetchPokemons]);
 
     return (
                 <div className={styles.grid}>
-                    {pokemons.results.map((result: any) =>
-                        <div key={result.name} className={styles.box}>
-                        <PokeBox name={result.name} onClick={() => handleClick(result.name)}/>
+                    {pokemons.map(({ name, url }) =>
+                        <div key={name} className={styles.box}>
+                        <PokeBox name={name}/>
                         </div>
                     )}
                 </div>
