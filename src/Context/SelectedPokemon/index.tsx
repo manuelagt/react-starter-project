@@ -38,7 +38,7 @@ const SelectedPokemonContext = createContext<SelectedPokemonContext>({
 
 export const useSelectedPokemon = () => {
     return useContext(SelectedPokemonContext);
-}
+};
 
 interface SelectedPokemonProvider {
     children: React.ReactNode;
@@ -53,7 +53,6 @@ export const SelectedPokemonProvider = ({children}: SelectedPokemonProvider) => 
                 .then(pokemon => {
                     console.log(pokemon);
                     setPokemon(pokemon);
-                    setTitle(name);
                 });
     }, []);
 
@@ -61,26 +60,18 @@ export const SelectedPokemonProvider = ({children}: SelectedPokemonProvider) => 
         setPokemon(undefined)
     }, [setPokemon]) ;
 
-    const setTitle = useCallback( (name) => {
-        const el: HTMLElement | null = document.getElementById("title");
-        if(el){
-            const definitelyAnElement: HTMLElement = el;
-            definitelyAnElement.innerText = `Pokedex - ${name}`
-        }
-
-    }, [])
 
     const state = {
         pokemon: pokemon,
         fetchPokemon,
         clearSelectedPokemon,
 
-    }
+    };
 
 
 
     return(<SelectedPokemonContext.Provider value={state}>{children}</SelectedPokemonContext.Provider> )
-}
+};
 
 
 
