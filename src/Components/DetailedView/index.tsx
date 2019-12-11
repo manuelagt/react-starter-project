@@ -3,10 +3,12 @@ import { PokeDetails } from '../PokeDetails';
 import { Case } from '../Case';
 import {useSelectedPokemon } from "../../Context/SelectedPokemon";
 import { useParams } from 'react-router-dom';
+import { useDocumentTitle } from "../../Hooks"
 
 export function DetailedView() {
     const {pokemon, fetchPokemon} = useSelectedPokemon();
     const { name } = useParams();
+    useDocumentTitle(`Pokedex - ${name}`);
 
     useEffect(() => {
         if(name !== undefined){
