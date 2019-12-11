@@ -1,4 +1,4 @@
-.box{
+.box {
   display: flex;
   align-items: center;
 
@@ -8,14 +8,14 @@
   border-radius: 20px;
   text-decoration: none;
 
-  .image{
+  .image {
     height: 30px;
     width: 30px;
     margin-right: 20px;
     margin-left: 15px;
   }
 
-  .name{
+  .name {
     margin-right: 20px;
     color: dimgray;
     text-transform: capitalize;
