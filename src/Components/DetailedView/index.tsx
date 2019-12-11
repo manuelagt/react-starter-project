@@ -8,13 +8,11 @@ import { useDocumentTitle } from "../../Hooks"
 export function DetailedView() {
     const {pokemon, fetchPokemon} = useSelectedPokemon();
     const { name } = useParams();
-    const title = `Pokedex - ${name}`;
-    useDocumentTitle(title);
+    useDocumentTitle(`Pokedex - ${name}`);
 
     useEffect(() => {
         if(name !== undefined){
             fetchPokemon(name);
-
         }
     }, [name, fetchPokemon]);
 

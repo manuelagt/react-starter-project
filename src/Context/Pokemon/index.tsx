@@ -53,7 +53,7 @@ export const PokemonProvider = ( {children}: PokemonProvider) => {
         }else{
             setOffset(offset - 20);
         }
-    }, [offset]);//En el deps tengo que meter algo??
+    }, [offset]);
 
     const handleNext = useCallback(() => {
         if(offset === 960){

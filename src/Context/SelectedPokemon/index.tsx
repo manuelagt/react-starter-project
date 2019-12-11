@@ -65,7 +65,6 @@ export const SelectedPokemonProvider = ({children}: SelectedPokemonProvider) => 
         pokemon: pokemon,
         fetchPokemon,
         clearSelectedPokemon,
-
     };
 
 
