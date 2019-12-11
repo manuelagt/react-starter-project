@@ -9,7 +9,6 @@ export function ListView() {
     const {handlePrevious, handleNext} = usePokemon();
     useDocumentTitle("Pokedex");
 
-
     return (
             <Case id={-1}
                   chosen={""}
