@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
+import { useReduced } from "../../Context/Reduced";
 
 interface Props {
   name: string;
-  url: string;
 }
 
-export function PokeSquare({ name, url }: Props) {
+export function PokeSquare({ name }: Props) {
+  const { state, dispatch } = useReduced();
+
+  useEffect(() => {
+    dispatch({
+      type: "simple",
+      payload: { name: name }
+    });
+  }, [dispatch, name]);
+
   return (
     <div className={styles.box}>
-      <img src={url} alt="Pokeball" className={styles.image} />
+      <img
+        src={state?.sprites.front_default}
+        alt="Pokeball"
+        className={styles.image}
+      />
       <h2 className={styles.name}>{name}</h2>
     </div>
   );

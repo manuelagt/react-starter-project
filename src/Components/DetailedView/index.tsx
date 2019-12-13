@@ -21,7 +21,7 @@ export function DetailedView() {
       <Case
         id={pokemon && pokemon.id}
         chosen={pokemon && pokemon.name}
-        children={<PokeDetails/>}
+        children={<PokeDetails />}
         handlePrevious={() => null}
         handleNext={() => null}
       />
