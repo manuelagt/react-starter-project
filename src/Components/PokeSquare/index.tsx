@@ -1,29 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
-import { useReduced } from "../../Context/Reduced";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 interface Props {
-  name: string;
+  name?: string;
+  url?: string;
 }
 
-export function PokeSquare({ name }: Props) {
-  const { simplePokemon, dispatch } = useReduced();
-
-  useEffect(() => {
-    dispatch({
-      type: "simple",
-      payload: { name: name }
-    });
-  }, [dispatch, name]);
-
+export function PokeSquare({ name, url }: Props) {
   return (
     <Link to={`/pokedex/${name}`} className={styles.box}>
-      <img
-        src={simplePokemon && simplePokemon.sprites.front_default}
-        alt="Pokeball"
-        className={styles.image}
-      />
+      <img src={url} alt="Pokeball" className={styles.image} />
       <h2 className={styles.name}>{name}</h2>
     </Link>
   );

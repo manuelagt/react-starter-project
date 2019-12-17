@@ -6,8 +6,8 @@ import { useSelectedPokemon } from "../../Context/SelectedPokemon";
 
 interface Props {
   children: React.ReactNode;
-  id?: number;
-  chosen?: string;
+  id?: number | null;
+  chosen?: string | null;
   handlePrevious?: () => void;
   handleNext?: () => void;
 }

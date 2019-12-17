@@ -2,18 +2,15 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Navigation } from "./Components/Navigation";
 import { PokemonProvider } from "./Context/Pokemon";
-import { SelectedPokemonProvider } from "./Context/SelectedPokemon";
-import { ReducedProvider } from "./Context/Reduced";
+import PokemonStoreProvider from "./Context/PokemonStore";
 
 function App() {
   return (
     <BrowserRouter>
       <PokemonProvider>
-        <SelectedPokemonProvider>
-          <ReducedProvider>
+          <PokemonStoreProvider>
             <Navigation />
-          </ReducedProvider>
-        </SelectedPokemonProvider>
+          </PokemonStoreProvider>
       </PokemonProvider>
     </BrowserRouter>
   );

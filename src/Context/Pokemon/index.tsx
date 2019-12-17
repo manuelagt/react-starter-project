@@ -40,7 +40,6 @@ export const PokemonProvider = ({ children }: PokemonProvider) => {
     return fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`)
       .then(res => res.json())
       .then(pokemons => {
-        console.log(pokemons);
         setPokemons(pokemons.results);
         setCount(pokemons.count);
       });

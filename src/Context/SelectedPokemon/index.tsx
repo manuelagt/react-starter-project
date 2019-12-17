@@ -6,7 +6,7 @@ export interface SelectedPokemonContext {
   clearSelectedPokemon: () => void;
 }
 
-export interface Pokemon {
+interface Pokemon {
   id: number;
   name: string;
   base_experience: number;

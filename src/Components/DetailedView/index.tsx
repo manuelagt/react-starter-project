@@ -1,27 +1,32 @@
 import React, { useEffect } from "react";
 import { PokeDetails } from "../PokeDetails";
 import { Case } from "../Case";
-import { useSelectedPokemon } from "../../Context/SelectedPokemon";
 import { useParams } from "react-router-dom";
 import { useDocumentTitle } from "../../Hooks";
+import { usePokemonStore } from "../../Context/PokemonStore";
 
 export function DetailedView() {
-  const { pokemon, fetchPokemon } = useSelectedPokemon();
+  const { state, fetchPokemon } = usePokemonStore();
   const { name } = useParams();
   useDocumentTitle(`Pokedex - ${name}`);
+  const pokemon = name ? state[name] : null;
 
   useEffect(() => {
-    if (name !== undefined) {
+    if (!pokemon && name) {
       fetchPokemon(name);
     }
-  }, [name, fetchPokemon]);
+  }, [name, fetchPokemon, pokemon]);
+
+  if (!pokemon) {
+    return null;
+  }
 
   return (
     <>
       <Case
-        id={pokemon && pokemon.id}
-        chosen={pokemon && pokemon.name}
-        children={<PokeDetails />}
+        id={pokemon.id}
+        chosen={pokemon.name}
+        children={<PokeDetails pokemon={pokemon} />}
         handlePrevious={() => null}
         handleNext={() => null}
       />
