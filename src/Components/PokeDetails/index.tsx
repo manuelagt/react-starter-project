@@ -7,7 +7,6 @@ interface Props {
 }
 
 export function PokeDetails({ pokemon }: Props) {
-
   return (
     <div className={styles.pantalla}>
       <div className={styles.pokemon}>

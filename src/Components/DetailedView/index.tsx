@@ -12,7 +12,7 @@ export function DetailedView() {
   const pokemon = name ? state[name] : null;
 
   useEffect(() => {
-    if (!pokemon && name) {
+    if (name) {
       fetchPokemon(name);
     }
   }, [name, fetchPokemon, pokemon]);

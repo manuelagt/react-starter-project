@@ -3,9 +3,11 @@ import React, { useContext, useReducer, useCallback } from "react";
 const PokemonStoreContext = React.createContext<{
   state: Record<string, Pokemon>;
   fetchPokemon: (name: string) => Promise<void>;
+  fetchImage: (name: string) => Promise<void>;
 }>({
   state: {},
-  fetchPokemon: () => Promise.resolve()
+  fetchPokemon: () => Promise.resolve(),
+  fetchImage: () => Promise.resolve(),
 });
 
 export function usePokemonStore() {
@@ -45,6 +47,7 @@ function PokemonStoreProvider({ children }: { children: React.ReactNode }) {
           return {
             ...state,
             [name]: {
+              ...state[name],
               name: pokemon.name,
               id: pokemon.id,
               base_experience: pokemon.base_experience,
@@ -55,6 +58,22 @@ function PokemonStoreProvider({ children }: { children: React.ReactNode }) {
               },
               stats: pokemon.stats,
               types: pokemon.types
+            }
+          };
+        }
+        case "set-pokemon-img": {
+          const pokemon = action.payload;
+          const name = pokemon.name;
+
+          return {
+            ...state,
+            [name]: {
+              ...state[name],
+              name: pokemon.name,
+              id: pokemon.id,
+              sprites: {
+                front_default: pokemon.sprites.front_default
+              }
             }
           };
         }
@@ -73,8 +92,16 @@ function PokemonStoreProvider({ children }: { children: React.ReactNode }) {
       });
   }, []);
 
+  const fetchImage = useCallback(name => {
+    return fetch(`https://pokeapi.co/api/v2/pokemon-form/${name}/`)
+        .then(res => res.json())
+        .then(pokemon => {
+          dispatch({ type: "set-pokemon-img", payload: pokemon });
+        })
+  }, []);
+
   return (
-    <PokemonStoreContext.Provider value={{ state, fetchPokemon }}>
+    <PokemonStoreContext.Provider value={{ state, fetchPokemon, fetchImage }}>
       {children}
     </PokemonStoreContext.Provider>
   );
