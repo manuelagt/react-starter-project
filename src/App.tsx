@@ -8,9 +8,9 @@ function App() {
   return (
     <BrowserRouter>
       <PokemonProvider>
-          <PokemonStoreProvider>
-            <Navigation />
-          </PokemonStoreProvider>
+        <PokemonStoreProvider>
+          <Navigation />
+        </PokemonStoreProvider>
       </PokemonProvider>
     </BrowserRouter>
   );

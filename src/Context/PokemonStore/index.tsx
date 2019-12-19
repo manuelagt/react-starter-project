@@ -7,7 +7,7 @@ const PokemonStoreContext = React.createContext<{
 }>({
   state: {},
   fetchPokemon: () => Promise.resolve(),
-  fetchImage: () => Promise.resolve(),
+  fetchImage: () => Promise.resolve()
 });
 
 export function usePokemonStore() {
@@ -94,10 +94,10 @@ function PokemonStoreProvider({ children }: { children: React.ReactNode }) {
 
   const fetchImage = useCallback(name => {
     return fetch(`https://pokeapi.co/api/v2/pokemon-form/${name}/`)
-        .then(res => res.json())
-        .then(pokemon => {
-          dispatch({ type: "set-pokemon-img", payload: pokemon });
-        })
+      .then(res => res.json())
+      .then(pokemon => {
+        dispatch({ type: "set-pokemon-img", payload: pokemon });
+      });
   }, []);
 
   return (

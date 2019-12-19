@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { ReactComponent as Cross } from "./plus-solid.svg";
 import { useHistory } from "react-router-dom";
-import { useSelectedPokemon } from "../../Context/SelectedPokemon";
 
 interface Props {
   children: React.ReactNode;
@@ -19,11 +18,9 @@ export function Case({
   handleNext,
   handlePrevious
 }: Props) {
-  const { clearSelectedPokemon } = useSelectedPokemon();
   const history = useHistory();
 
   function handleClick() {
-    clearSelectedPokemon();
     history.push("/pokedex");
   }
 
