@@ -1,14 +1,12 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import { useSelectedPokemon } from "../../Context/SelectedPokemon";
+import { Pokemon } from "../../Context/PokemonStore";
 
-export function PokeDetails() {
-  const { pokemon } = useSelectedPokemon();
+interface Props {
+  pokemon: Pokemon;
+}
 
-  if (pokemon === undefined) {
-    return null;
-  }
-
+export function PokeDetails({ pokemon }: Props) {
   return (
     <div className={styles.pantalla}>
       <div className={styles.pokemon}>
@@ -32,17 +30,20 @@ export function PokeDetails() {
             Base Experience: {pokemon.base_experience} EXP.
           </p>
           <p className={styles.textoPantalla}>
-            Types: {pokemon.types.map((type: any) => type.type.name).join(", ")}
+            Types:{" "}
+            {pokemon.types &&
+              pokemon.types.map((type: any) => type.type.name).join(", ")}
             .
           </p>
         </div>
         <div className={styles.stats}>
           <h2>Base Stats:</h2>
-          {pokemon.stats.map((result: any) => (
-            <p key={result.stat.name} className={styles.textoPantalla}>
-              {result.stat.name}: {result.base_stat}
-            </p>
-          ))}
+          {pokemon.stats &&
+            pokemon.stats.map((result: any) => (
+              <p key={result.stat.name} className={styles.textoPantalla}>
+                {result.stat.name}: {result.base_stat}
+              </p>
+            ))}
         </div>
       </div>
     </div>

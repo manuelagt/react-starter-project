@@ -6,8 +6,8 @@ import { useSelectedPokemon } from "../../Context/SelectedPokemon";
 
 interface Props {
   children: React.ReactNode;
-  id?: number;
-  chosen?: string;
+  id?: number | null;
+  chosen?: string | null;
   handlePrevious?: () => void;
   handleNext?: () => void;
 }
@@ -30,29 +30,23 @@ export function Case({
   return (
     <div className={styles.pokedex}>
       <div className={styles.cabecera}>
-        <div className={styles.camara}/>
+        <div className={styles.camara} />
       </div>
       <div className={styles.carcasa}>
         <div className={styles.pantalla}>{children}</div>
         <div className={styles.controller}>
-          <button
-            onClick={handleClick}
-            className={styles.botonCircular}
-          />
+          <button onClick={handleClick} className={styles.botonCircular} />
           <div className={styles.barrasConPantalla}>
             <div className={styles.barras}>
               {handlePrevious ? (
-                <div
-                  className={styles.barraVerde}
-                  onClick={handlePrevious}
-                />
+                <div className={styles.barraVerde} onClick={handlePrevious} />
               ) : (
-                <div className={styles.barraVerde}/>
+                <div className={styles.barraVerde} />
               )}
               {handlePrevious ? (
-                <div className={styles.barraNaranja} onClick={handleNext}/>
+                <div className={styles.barraNaranja} onClick={handleNext} />
               ) : (
-                <div className={styles.barraNaranja}/>
+                <div className={styles.barraNaranja} />
               )}
             </div>
             {chosen !== "" ? (
@@ -60,7 +54,7 @@ export function Case({
                 <p className={styles.text}>{id}</p>
               </div>
             ) : (
-              <div className={styles.pantallaOff}/>
+              <div className={styles.pantallaOff} />
             )}
           </div>
           <Cross className={styles.cross} />

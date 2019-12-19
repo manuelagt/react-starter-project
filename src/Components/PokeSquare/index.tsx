@@ -4,13 +4,15 @@ import { Link } from "react-router-dom";
 import { usePokemonStore } from "../../Context/PokemonStore";
 
 interface Props {
-  name: string;
+  name?: string;
 }
 
-export function PokeBox({ name }: Props) {
+export function PokeSquare({ name }: Props) {
   const { state, fetchImage } = usePokemonStore();
 
   const pokemon = name ? state[name] : null;
+
+  console.log(pokemon);
 
   useEffect(() => {
     if (!pokemon && name) {
@@ -23,7 +25,7 @@ export function PokeBox({ name }: Props) {
   }
 
   return (
-    <Link to={`pokedex/${name}`} className={styles.box}>
+    <Link to={`/pokedex/${name}`} className={styles.box}>
       <img
         src={pokemon.sprites.front_default}
         alt="Pokeball"
