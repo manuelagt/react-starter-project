@@ -1,0 +1,33 @@
+.rectangle {
+  background-color: #76befe;
+  border-radius: 20px;
+  box-shadow: 1px 1px 5px gray;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .top {
+    display: flex;
+    align-items: center;
+
+    .name {
+      font-size: 20px;
+      color: whitesmoke;
+      text-align: center;
+      margin: 15px 10px 5px 15px;
+    }
+
+    .id {
+      font-size: 15px;
+      margin: 18px 15px 5px 0;
+      color: #ededed;
+    }
+  }
+
+  .imagen {
+    height: 50px;
+    width: 50px;
+    margin: 0 0 12px 0;
+  }
+}

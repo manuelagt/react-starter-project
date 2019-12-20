@@ -1,13 +1,14 @@
 import React from "react";
-import { PokeSquare } from "../Components/PokeSquare";
+import { Overview } from "../Components/NewDesign/Pokedex/Overview";
 
 export default {
-  title: "PokeSquare"
+  title: "Overview"
 };
 
 export const regular = () => (
-  <PokeSquare
+  <Overview
     name="Bulbasaur"
     url="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
+    id={1}
   />
 );

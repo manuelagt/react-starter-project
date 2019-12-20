@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  .item {
+    font-size: 16px;
+    color: #656565;
+  }
+}
+
+.divisor {
+  border: 1px solid lightgray;
+}
